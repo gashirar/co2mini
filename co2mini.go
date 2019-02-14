@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 	"github.com/zserge/hid"
-    "errors"
+	"errors"
 )
 
 var (
@@ -18,7 +18,7 @@ type Co2mini struct {
 }
 
 func (c *Co2mini) Connect() error {
-    const vendorId = "04d9:a052:0100:00"
+	const vendorId = "04d9:a052:0100:00"
 
 	hid.UsbWalk(func(device hid.Device) {
 		info := device.Info()
@@ -29,11 +29,11 @@ func (c *Co2mini) Connect() error {
 		c.device = device
 	})
 	if c.device == nil {
-	  return errors.New("Device not found.")
+		return errors.New("Device not found.")
 	}
 	c.Co2Ch = make(chan int)
 	c.TempCh = make(chan float64)
-    return nil
+	return nil
 }
 
 func (c *Co2mini) Start() error {
@@ -119,5 +119,3 @@ func shuffle(b []byte) []byte {
 	}
 	return res
 }
-
-
